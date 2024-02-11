@@ -1,7 +1,9 @@
 {
-    "editor.inlayHints.enabled": "on",
-    "rust-analyzer.showUnlinkedFileNotification": false,
-    "rust-analyzer.inlayHints.typeHints.enable": false,
-    // "rust-analyzer.inlayHints.parameterHints.enable": true,
-    "terminal.integrated.fontFamily": "MesloLGS NF"
+  "editor.inlayHints.enabled": "on",
+  "terminal.integrated.fontFamily": "MesloLGS NF",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": false,
+  "prettier.useEditorConfig": false,
+  "prettier.configPath": ".prettierrc.json"
 }
