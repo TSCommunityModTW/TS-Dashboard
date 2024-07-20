@@ -76,16 +76,18 @@ export default function LauncherServerSidebar() {
 				<div
 					className="flex cursor-pointer items-center gap-4 rounded-lg px-4 py-3 transition hover:scale-105 hover:bg-zinc-500/50 active:scale-100"
 					onClick={() => {
+						router.push(`/dashboard/launcher/server/${server.id}/version`);
+					}}
+				>
+					<h1 className="text-base">發布版本</h1>
+				</div>
+				<div
+					className="flex cursor-pointer items-center gap-4 rounded-lg px-4 py-3 transition hover:scale-105 hover:bg-zinc-500/50 active:scale-100"
+					onClick={() => {
 						router.push(`/dashboard/launcher/server/${server.id}/whitelist`);
 					}}
 				>
 					<h1 className="text-base">白名單</h1>
-				</div>
-				<div
-					className="flex cursor-pointer items-center gap-4 rounded-lg px-4 py-3 transition hover:scale-105 hover:bg-zinc-500/50 active:scale-100"
-					onClick={() => {}}
-				>
-					<h1 className="text-base">文件</h1>
 				</div>
 			</div>
 		</div>
