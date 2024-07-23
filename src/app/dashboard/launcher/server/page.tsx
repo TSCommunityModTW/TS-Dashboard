@@ -3,32 +3,28 @@
 import Image from "next/image";
 import { Button, Card, CardFooter } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function LauncherServer() {
 	const router = useRouter();
+	const [servers, setServers] = useState<Array<{ id: string; name: string; logoUrl: string }>>([]);
 
-	const servers = [
-		{
-			id: "namelessrealms",
-			name: "Nameless Realms",
-			logoUrl: "https://github.com/NamelessRealms/mckismetlab-launcher/blob/react-v0.4.x-beta/src/assets/images/logo/logo.png?raw=true"
-		},
-		{
-			id: "namelessrealms2",
-			name: "Nameless Realms",
-			logoUrl: "https://github.com/NamelessRealms/mckismetlab-launcher/blob/react-v0.4.x-beta/src/assets/images/logo/logo.png?raw=true"
-		},
-		{
-			id: "namelessrealms3",
-			name: "Nameless Realms",
-			logoUrl: "https://github.com/NamelessRealms/mckismetlab-launcher/blob/react-v0.4.x-beta/src/assets/images/logo/logo.png?raw=true"
-		},
-		{
-			id: "namelessrealms4",
-			name: "Nameless Realms",
-			logoUrl: "https://github.com/NamelessRealms/mckismetlab-launcher/blob/react-v0.4.x-beta/src/assets/images/logo/logo.png?raw=true"
-		}
-	];
+	useEffect(() => {
+		getData();
+	}, []);
+
+	const getData = async () => {
+		const servers = await (await fetch("http://localhost:8030/launcher/assets/servers")).json();
+		setServers(
+			servers.map((data: any) => {
+				return {
+					id: data.id,
+					name: data.name,
+					logoUrl: data.image_url
+				};
+			})
+		);
+	};
 
 	return (
 		<div className="px-5 py-10">

@@ -3,14 +3,34 @@
 const nextConfig = {
 	images: {
 		remotePatterns: [
+			// {
+			// 	protocol: "https",
+			// 	hostname: "github.com",
+			// 	pathname: "**"
+			// },
+			// {
+			// 	protocol: "https",
+			// 	hostname: "i.ibb.co",
+			// 	pathname: "**"
+			// },
+			// {
+			// 	protocol: "https",
+			// 	hostname: "s3-alpha-sig.figma.com",
+			// 	pathname: "**"
+			// },
+			// {
+			// 	protocol: "https",
+			// 	hostname: "static.wixstatic.com",
+			// 	pathname: "**"
+			// },
 			{
 				protocol: "https",
-				hostname: "github.com",
+				hostname: "**",
 				pathname: "**"
 			},
 			{
-				protocol: "https",
-				hostname: "i.ibb.co",
+				protocol: "http",
+				hostname: "s3api.bdstw.org",
 				pathname: "**"
 			}
 		]

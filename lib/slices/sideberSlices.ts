@@ -2,11 +2,11 @@ import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
 
 type SideberType = "Dashboard" | "LauncherServer";
 
-interface ISideberSlices {
+interface ISideberState {
 	type: SideberType;
 }
 
-const initialState: ISideberSlices = {
+const initialState: ISideberState = {
 	type: "Dashboard"
 };
 
