@@ -1,17 +1,23 @@
 "use client";
 
 import { Input, Button, Image } from "@nextui-org/react";
-import { useAppSelector } from "../../../../../../../lib/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../../lib/hooks";
 import { useRef, useState } from "react";
+import { config } from "@/config/config";
+import { setServer } from "@/app/lib/slices/serverSlices";
 
-export default function ServerInformationUIClient() {
+interface IProps {
+	server_Id: string;
+}
+
+export default function ServerInformationUIClient(props: IProps) {
+	const dispatch = useAppDispatch();
 	const serverAssetsManifest = useAppSelector((state) => state.serverSlices);
-
 	const [imageUrl, setImageUrl] = useState<string>(serverAssetsManifest ? serverAssetsManifest.imageUrl : "");
 	const [name, setName] = useState<string>(serverAssetsManifest ? serverAssetsManifest.name : "");
 	const [description, setDescription] = useState<string>(serverAssetsManifest ? serverAssetsManifest.description : "");
 	const [officialWebLinkUrl, setOfficialWebLinkUrl] = useState<string>(serverAssetsManifest ? serverAssetsManifest.officialWebLinkUrl : "");
-
+	const [updateDataSpinner, setUpdateDataSpinner] = useState<boolean>(false);
 	const fileInputRef = useRef<HTMLInputElement>(null);
 	const handleFile = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const file = event.target.files?.[0];
@@ -27,9 +33,42 @@ export default function ServerInformationUIClient() {
 		fileInputRef.current?.click();
 	};
 
+	const updateData = async () => {
+		setUpdateDataSpinner(true);
+
+		dispatch(
+			setServer({
+				id: serverAssetsManifest.id,
+				name,
+				imageUrl,
+				description,
+				officialWebLinkUrl,
+				childrens: serverAssetsManifest.childrens
+			})
+		);
+
+		const formData = new FormData();
+		formData.append("id", props.server_Id);
+		formData.append("name", name);
+		formData.append("image_url", imageUrl);
+		formData.append("description", description);
+		formData.append("official_web_link_url", officialWebLinkUrl);
+
+		const response = await fetch(`${config.API_LOCATION}/launcher/assets/servers/${props.server_Id}`, {
+			method: "PATCH",
+			body: formData
+		});
+
+		if (response.status === 201 || response.status === 304) {
+			setUpdateDataSpinner(false);
+		} else {
+			console.error("Error updating data: " + response.status);
+		}
+	};
+
 	return (
 		<div className="container">
-			<h1 className="mb-[10px] text-lg">伺服器資訊</h1>
+			<h1 className="mb-[10px] text-lg">伺服器</h1>
 			<div className="flex items-center justify-center space-x-[30px]">
 				<div className="flex flex-col items-center justify-center rounded-lg bg-content1 px-[20px] py-[10px]">
 					<Image
@@ -74,6 +113,16 @@ export default function ServerInformationUIClient() {
 						}}
 					/>
 				</div>
+			</div>
+			<div className="mt-[20px] flex items-center justify-start">
+				<Button
+					className="caret-zinc-50"
+					color="primary"
+					isLoading={updateDataSpinner}
+					onClick={updateData}
+				>
+					儲存
+				</Button>
 			</div>
 		</div>
 	);

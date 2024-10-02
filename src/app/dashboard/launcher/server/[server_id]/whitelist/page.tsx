@@ -22,8 +22,7 @@ import {
 	ModalHeader,
 	Input
 } from "@nextui-org/react";
-import { EditIcon } from "@/components/icon/EditIcon";
-import { DeleteIcon } from "@/components/icon/DeleteIcon";
+import { DeleteIcon } from "@/app/components/icon/DeleteIcon";
 
 const playersData = [
 	{

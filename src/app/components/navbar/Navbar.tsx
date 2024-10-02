@@ -18,10 +18,10 @@ export default function Navbar() {
 			<div className="flex h-full items-center justify-end space-x-2">
 				<div className="flex h-full items-center justify-center rounded-lg bg-content1 px-8 shadow-2xl">
 					<User
-						name="yucheng"
+						name="NULL"
 						description="Admin"
 						avatarProps={{
-							src: "https://i.pravatar.cc/150?u=a04258114e29026702d"
+							src: "https://upload.wikimedia.org/wikipedia/commons/f/fb/Minecraft-creeper-face.jpg"
 						}}
 					/>
 				</div>

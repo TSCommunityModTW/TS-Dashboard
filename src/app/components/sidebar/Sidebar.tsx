@@ -1,6 +1,6 @@
 "use client";
 
-import { useAppSelector } from "../../../lib/hooks";
+import { useAppSelector } from "@/app/lib/hooks";
 import DashboardSidebar from "./DashboardSidebar";
 import LauncherServerSidebar from "./LauncherServerSidebar";
 

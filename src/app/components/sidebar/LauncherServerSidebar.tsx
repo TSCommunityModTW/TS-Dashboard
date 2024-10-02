@@ -1,20 +1,18 @@
 import { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../../lib/hooks";
-import { setType } from "../../../lib/slices/sideberSlices";
 import { Select, SelectItem, Image, Spinner } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { FaAngleLeft } from "react-icons/fa6";
-import { setServer } from "../../../lib/slices/serverSlices";
-import { setLauncherSelectServerChildrenId } from "../../../lib/slices/dashboardSlices";
+import { useAppDispatch, useAppSelector } from "@/app/lib/hooks";
+import { setLauncherSelectServerChildrenId } from "@/app/lib/slices/dashboardSlices";
+import { setType } from "@/app/lib/slices/sideberSlices";
+import { setServer } from "@/app/lib/slices/serverSlices";
 
 export default function LauncherServerSidebar() {
 	const router = useRouter();
 	const dispatch = useAppDispatch();
-
 	// // const dashboardSettings = useAppSelector((state) => state.dashboardSlices);
 	const serverAssetsManifest = useAppSelector((state) => state.serverSlices);
-
-	const [serverChildrenSelect, setServerChildrenSelect] = useState<string>(serverAssetsManifest.children[0].id);
+	const [serverChildrenSelect, setServerChildrenSelect] = useState<string>(serverAssetsManifest.childrens[0].id);
 
 	useEffect(() => {
 		dispatch(setLauncherSelectServerChildrenId(serverChildrenSelect));
@@ -41,7 +39,7 @@ export default function LauncherServerSidebar() {
 							imageUrl: "",
 							description: "",
 							officialWebLinkUrl: "",
-							children: []
+							childrens: []
 						})
 					);
 				}}
@@ -69,7 +67,7 @@ export default function LauncherServerSidebar() {
 					dispatch(setLauncherSelectServerChildrenId(value.target.value));
 				}}
 			>
-				{serverAssetsManifest.children.map((children) => (
+				{serverAssetsManifest.childrens.map((children) => (
 					<SelectItem key={children.id}>{children.name}</SelectItem>
 				))}
 			</Select>

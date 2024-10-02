@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
+	reactStrictMode: false,
 	images: {
 		remotePatterns: [
 			// {
@@ -30,7 +31,7 @@ const nextConfig = {
 			},
 			{
 				protocol: "http",
-				hostname: "s3api.bdstw.org",
+				hostname: "s3api.tshosts.com",
 				pathname: "**"
 			}
 		]

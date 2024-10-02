@@ -1,14 +1,15 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useAppDispatch } from "../../../../../../lib/hooks";
-import { setType } from "../../../../../../lib/slices/sideberSlices";
+import { useAppDispatch } from "../../../../lib/hooks";
+import { setType } from "../../../../lib/slices/sideberSlices";
 import { useEffect } from "react";
-import { setServer } from "../../../../../../lib/slices/serverSlices";
+import { setServer } from "../../../../lib/slices/serverSlices";
 import { Spinner } from "@nextui-org/react";
+import { config } from "@/config/config";
 
-export default function LauncherServer({ params }: { params: { id: string } }) {
-	const serverId = params.id;
+export default function LauncherServer({ params }: { params: { server_id: string } }) {
+	const serverId = params.server_id;
 	const router = useRouter();
 	const dispatch = useAppDispatch();
 
@@ -17,8 +18,8 @@ export default function LauncherServer({ params }: { params: { id: string } }) {
 	}, []);
 
 	const fetchData = async () => {
-		const serverData = await (await fetch(`http://localhost:8030/launcher/assets/servers/${serverId}`)).json();
-		const serverChildrenData = await (await fetch(`http://localhost:8030/launcher/assets/servers/${serverId}/childrens`)).json();
+		const serverData = await (await fetch(`${config.API_LOCATION}/launcher/assets/servers/${serverId}`)).json();
+		const serverChildrenData = await (await fetch(`${config.API_LOCATION}/launcher/assets/servers/${serverId}/childrens`)).json();
 
 		dispatch(
 			setServer({
@@ -27,7 +28,7 @@ export default function LauncherServer({ params }: { params: { id: string } }) {
 				imageUrl: serverData.image_url,
 				description: serverData.description,
 				officialWebLinkUrl: serverData.official_web_link_url,
-				children: serverChildrenData.map((children: any) => ({
+				childrens: serverChildrenData.map((children: any) => ({
 					id: children.id,
 					ip: children.ip,
 					name: children.name,

@@ -28,7 +28,7 @@ export interface IServerState {
     imageUrl: string;
     description: string;
     officialWebLinkUrl: string;
-    children: Array<IServerChildren>
+    childrens: Array<IServerChildren>
 }
 
 const initialState: IServerState = {
@@ -37,7 +37,7 @@ const initialState: IServerState = {
     imageUrl: "",
     description: "",
     officialWebLinkUrl: "",
-    children: []
+    childrens: []
 }
 
 export const serverSlices = createSlice({
@@ -50,7 +50,7 @@ export const serverSlices = createSlice({
             state.imageUrl = action.payload.imageUrl;
             state.description = action.payload.description;
             state.officialWebLinkUrl = action.payload.officialWebLinkUrl;
-            state.children = action.payload.children;
+            state.childrens = action.payload.childrens;
         },
         setId: (state, action: PayloadAction<string>) => {
             state.id = action.payload;
@@ -67,11 +67,17 @@ export const serverSlices = createSlice({
         setOfficialWebLinkUrl: (state, action: PayloadAction<string>) => {
             state.officialWebLinkUrl = action.payload;
         },
-        setChildren: (state, action: PayloadAction<Array<IServerChildren>>) => {
-            state.children = action.payload;
+        setChildrens: (state, action: PayloadAction<Array<IServerChildren>>) => {
+            state.childrens = action.payload;
+        },
+        setChildren: (state, action: PayloadAction<{ id: string, data: IServerChildren }>) => {
+            state.childrens = state.childrens.map(children => {
+                if (children.id === action.payload.id) children = action.payload.data;
+                return children;
+            })
         }
     }
 });
 
-export const { setServer, setId, setName, setImageUrl, setDescription, setOfficialWebLinkUrl, setChildren } = serverSlices.actions;
+export const { setServer, setId, setName, setImageUrl, setDescription, setOfficialWebLinkUrl, setChildrens, setChildren } = serverSlices.actions;
 export default serverSlices.reducer;
