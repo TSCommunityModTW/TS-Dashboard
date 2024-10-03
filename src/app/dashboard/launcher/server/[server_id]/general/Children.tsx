@@ -25,7 +25,7 @@ export default function ChildrenUIClient(props: IProps) {
 	const [name, setName] = useState<string>(serveChildrenAssetsManifest ? serveChildrenAssetsManifest.name : "");
 	const [ip, setIp] = useState<string>(serveChildrenAssetsManifest ? serveChildrenAssetsManifest.ip : "");
 	const [minecraftVersion, setMinecraftVersion] = useState<string>(serveChildrenAssetsManifest ? serveChildrenAssetsManifest.minecraftVersion : "");
-	const [minecraftType, setMinecraftType] = useState<MinecraftType | undefined>(serveChildrenAssetsManifest ? serveChildrenAssetsManifest.minecraftType : undefined);
+	const [minecraftType, setMinecraftType] = useState<MinecraftType>(serveChildrenAssetsManifest ? serveChildrenAssetsManifest.minecraftType : "MODPACK");
 
 	const [updateDataSpinner, setUpdateDataSpinner] = useState<boolean>(false);
 
@@ -160,7 +160,7 @@ export default function ChildrenUIClient(props: IProps) {
 					/>
 				</div>
 			</div>
-			<div className="container my-[30px]">
+			{/* <div className="container my-[30px]">
 				<div className="flex items-center justify-center space-x-[10px]">
 					{minecraftVersionManifest ? (
 						<Select
@@ -190,7 +190,7 @@ export default function ChildrenUIClient(props: IProps) {
 						<SelectItem key="MODPACK">Modpack</SelectItem>
 					</Select>
 				</div>
-			</div>
+			</div> */}
 			<div className="mt-[20px] flex items-center justify-start">
 				<Button
 					className="caret-zinc-50"
