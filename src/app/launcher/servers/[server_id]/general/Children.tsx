@@ -1,10 +1,10 @@
 "use client";
 
 import { Input, Button, Image, SelectItem, Select, Spinner } from "@nextui-org/react";
-import { useAppDispatch, useAppSelector } from "../../../../../lib/hooks";
-import IMinecraftVersionManifest from "../../../../../../../interfaces/IMinecraftVersionManifest";
+import { useAppDispatch, useAppSelector } from "../../../../lib/hooks";
+import IMinecraftVersionManifest from "../../../../../../interfaces/IMinecraftVersionManifest";
 import { useEffect, useRef, useState } from "react";
-import { IServerChildren, MinecraftType, setChildren } from "../../../../../lib/slices/serverSlices";
+import { IServerChildren, MinecraftType, setChildren } from "../../../../lib/slices/serverSlices";
 import { config } from "@/config/config";
 
 interface IProps {
@@ -104,7 +104,7 @@ export default function ChildrenUIClient(props: IProps) {
 		formData.append("minecraft_version", minecraftVersion);
 		formData.append("action_rule", "ALL"); // TODO
 
-		const response = await fetch(`${config.API_LOCATION}/launcher/assets/servers/${props.server_Id}/childrens/${serveChildrenAssetsManifest.id}`, {
+		const response = await fetch(`${config.API_BASE_URL}/launcher/servers/${props.server_Id}/children/${serveChildrenAssetsManifest.id}`, {
 			method: "PATCH",
 			body: formData
 		});

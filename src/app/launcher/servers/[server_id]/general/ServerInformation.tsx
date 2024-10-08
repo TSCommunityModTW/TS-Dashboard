@@ -1,7 +1,7 @@
 "use client";
 
 import { Input, Button, Image } from "@nextui-org/react";
-import { useAppDispatch, useAppSelector } from "../../../../../lib/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../lib/hooks";
 import { useRef, useState } from "react";
 import { config } from "@/config/config";
 import { setServer } from "@/app/lib/slices/serverSlices";
@@ -54,7 +54,7 @@ export default function ServerInformationUIClient(props: IProps) {
 		formData.append("description", description);
 		formData.append("official_web_link_url", officialWebLinkUrl);
 
-		const response = await fetch(`${config.API_LOCATION}/launcher/assets/servers/${props.server_Id}`, {
+		const response = await fetch(`${config.API_BASE_URL}/launcher/servers/${props.server_Id}`, {
 			method: "PATCH",
 			body: formData
 		});

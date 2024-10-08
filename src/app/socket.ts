@@ -1,7 +1,7 @@
 import { config } from "@/config/config";
 import { io, Socket } from "socket.io-client";
 
-export const socket = io(config.SOCKET_LOCATION, {
+export const socket = io(config.SOCKET_BASE_URL, {
     autoConnect: false,
     // extraHeaders: {
     //     authorization: process.env.SOCKET_TOKEN!,
@@ -14,7 +14,7 @@ export const socket = io(config.SOCKET_LOCATION, {
 //     private static _socket?: Socket;
 
 //     public static init(access_token: string, secret: string): void {
-//         this._socket = io(config.SOCKET_LOCATION, {
+//         this._socket = io(config.SOCKET_BASE_URL, {
 //             autoConnect: false,
 //             extraHeaders: {
 //                 authorization: access_token,

@@ -2,7 +2,7 @@ import { config } from "@/config/config";
 import ServerCard from "./ServerCard";
 
 export default async function LauncherServer() {
-	const response = await fetch(`${config.API_LOCATION}/launcher/assets/servers`);
+	const response = await fetch(`${config.API_BASE_URL}/launcher/servers`);
 	const serversData: Array<IAssetsServer> = await response.json();
 	return (
 		<div className="px-5 py-10">

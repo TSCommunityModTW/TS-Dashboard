@@ -1,10 +1,10 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useAppDispatch } from "../../../../lib/hooks";
-import { setType } from "../../../../lib/slices/sideberSlices";
+import { useAppDispatch } from "../../../lib/hooks";
+import { setType } from "../../../lib/slices/sideberSlices";
 import { useEffect } from "react";
-import { setServer } from "../../../../lib/slices/serverSlices";
+import { setServer } from "../../../lib/slices/serverSlices";
 import { Spinner } from "@nextui-org/react";
 import { config } from "@/config/config";
 
@@ -18,8 +18,8 @@ export default function LauncherServer({ params }: { params: { server_id: string
 	}, []);
 
 	const fetchData = async () => {
-		const serverData = await (await fetch(`${config.API_LOCATION}/launcher/assets/servers/${serverId}`)).json();
-		const serverChildrenData = await (await fetch(`${config.API_LOCATION}/launcher/assets/servers/${serverId}/childrens`)).json();
+		const serverData = await (await fetch(`${config.API_BASE_URL}/launcher/servers/${serverId}`)).json();
+		const serverChildrenData = await (await fetch(`${config.API_BASE_URL}/launcher/servers/${serverId}/children`)).json();
 
 		dispatch(
 			setServer({

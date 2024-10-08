@@ -4,6 +4,8 @@ import { Inter } from "next/font/google";
 import "./globals.scss";
 
 import { Providers } from "./providers";
+import Navbar from "./components/navbar/Navbar";
+import Sidebar from "./components/sidebar/Sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +21,15 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
 			className="dark"
 		>
 			<body className={inter.className}>
-				<Providers>{children}</Providers>
+				<Providers>
+					<div className="box-border flex h-screen w-screen p-4">
+						<Sidebar />
+						<div className="w-full pl-10">
+							<Navbar />
+							<div className="">{children}</div>
+						</div>
+					</div>
+				</Providers>
 			</body>
 		</html>
 	);

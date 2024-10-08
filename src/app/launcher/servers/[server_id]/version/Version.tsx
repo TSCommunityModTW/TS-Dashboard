@@ -26,7 +26,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { GoFileDirectory, GoFileDirectoryFill } from "react-icons/go";
 import ErrorGetMod from "./ErrorGetMod";
-import { useAppSelector } from "../../../../../lib/hooks";
+import { useAppSelector } from "../../../../lib/hooks";
 import { v4 as uuidv4 } from "uuid";
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { config } from "@/config/config";
@@ -72,7 +72,7 @@ export default function VersionClient() {
 	}, []);
 
 	const fetchData = async () => {
-		const serverAssetsManifestVersions = await (await fetch(`${config.API_LOCATION}/launcher/assets/metadata/${launcherSelectServerChildrenId}/versions`)).json();
+		const serverAssetsManifestVersions = await (await fetch(`${config.API_BASE_URL}/launcher/children/${launcherSelectServerChildrenId}/versions/metadata`)).json();
 		setServerAssetsManifestVersions(serverAssetsManifestVersions);
 	};
 
@@ -100,7 +100,7 @@ export default function VersionClient() {
 		const formData = new FormData();
 		formData.append("file", uploadFile);
 
-		const response = await fetch(`${config.API_LOCATION}/launcher/temporary/assets/modpack/upload`, {
+		const response = await fetch(`${config.API_BASE_URL}/launcher/modpacks/upload/temporary`, {
 			method: "POST",
 			body: formData
 		});
@@ -132,7 +132,7 @@ export default function VersionClient() {
 			getType: "Homemade",
 			newName: newName,
 			newVersion: newVersion,
-			downloadUrl: `${config.S3_TS_LAUNCHER_METSDATA}/${uploadDownload}`
+			downloadUrl: `${config.S3_TS_LAUNCHER_METSDATA_URL}/${uploadDownload}`
 		});
 		socket.once("LAUNCHET_SERVER_FILE_REPLY_OK", () => {
 			socket.emit("LAUNCHET_SERVER_FILE_OK", { serverId: serverAssetsManifest.id, childrenId: launcherSelectServerChildrenId });

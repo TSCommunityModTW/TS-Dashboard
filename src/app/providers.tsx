@@ -7,7 +7,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
 	// 	authBody.append("grant_type", "token");
 	// 	authBody.append("token", process.env.SOCKET_TOKEN!);
 	// 	const socketAuth = await (
-	// 		await fetch(`${config.API_LOCATION}/oauth2/token`, {
+	// 		await fetch(`${config.API_BASE_URL}/oauth2/token`, {
 	// 			method: "POST",
 	// 			body: authBody
 	// 		})
