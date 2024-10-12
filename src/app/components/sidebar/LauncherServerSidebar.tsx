@@ -30,7 +30,7 @@ export default function LauncherServerSidebar() {
 			<div
 				className="mb-6 flex cursor-pointer items-center text-slate-200 transition hover:text-white"
 				onClick={() => {
-					router.push("/dashboard/launcher/server");
+					router.push("/launcher/servers");
 					dispatch(setType("Dashboard"));
 					dispatch(
 						setServer({
@@ -76,7 +76,7 @@ export default function LauncherServerSidebar() {
 				<div
 					className="flex cursor-pointer items-center gap-4 rounded-lg px-4 py-3 transition hover:scale-105 hover:bg-zinc-500/50 active:scale-100"
 					onClick={() => {
-						router.push(`/dashboard/launcher/server/${serverAssetsManifest.id}/general`);
+						router.push(`/launcher/servers/${serverAssetsManifest.id}/general`);
 					}}
 				>
 					<h1 className="text-base">一般</h1>
@@ -84,7 +84,7 @@ export default function LauncherServerSidebar() {
 				<div
 					className="flex cursor-pointer items-center gap-4 rounded-lg px-4 py-3 transition hover:scale-105 hover:bg-zinc-500/50 active:scale-100"
 					onClick={() => {
-						router.push(`/dashboard/launcher/server/${serverAssetsManifest.id}/version`);
+						router.push(`/launcher/servers/${serverAssetsManifest.id}/version`);
 					}}
 				>
 					<h1 className="text-base">發布版本</h1>
@@ -92,7 +92,7 @@ export default function LauncherServerSidebar() {
 				<div
 					className="flex cursor-pointer items-center gap-4 rounded-lg px-4 py-3 transition hover:scale-105 hover:bg-zinc-500/50 active:scale-100"
 					onClick={() => {
-						router.push(`/dashboard/launcher/server/${serverAssetsManifest.id}/whitelist`);
+						router.push(`/launcher/servers/${serverAssetsManifest.id}/whitelist`);
 					}}
 				>
 					<h1 className="text-base">白名單</h1>

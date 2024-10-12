@@ -41,7 +41,7 @@ export default function LauncherServer({ params }: { params: { server_id: string
 		);
 
 		dispatch(setType("LauncherServer"));
-		router.push(`/dashboard/launcher/server/${serverId}/general`);
+		router.push(`/launcher/servers/${serverId}/general`);
 	};
 
 	return <Spinner />;

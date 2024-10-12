@@ -24,7 +24,7 @@ export default function DashboardSidebar() {
 				<div
 					className="flex cursor-pointer items-center gap-4 rounded-lg px-4 py-3 transition hover:scale-105 hover:bg-zinc-500/50 active:scale-100"
 					onClick={() => {
-						router.push("/dashboard");
+						// router.push("/dashboard");
 					}}
 				>
 					<Image
@@ -38,7 +38,7 @@ export default function DashboardSidebar() {
 				<div
 					className="flex cursor-pointer items-center gap-4 rounded-lg px-4 py-3 transition hover:scale-105 hover:bg-zinc-500/50 active:scale-100"
 					onClick={() => {
-						router.push("/dashboard/launcher/server");
+						router.push("/launcher/servers");
 					}}
 				>
 					<Image

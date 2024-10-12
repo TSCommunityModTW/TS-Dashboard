@@ -132,7 +132,7 @@ export default function VersionClient() {
 			getType: "Homemade",
 			newName: newName,
 			newVersion: newVersion,
-			downloadUrl: `${config.S3_TS_LAUNCHER_METSDATA_URL}/${uploadDownload}`
+			downloadUrl: `${config.S3_TS_LAUNCHER_METSDATA_URL}${uploadDownload}`
 		});
 		socket.once("LAUNCHET_SERVER_FILE_REPLY_OK", () => {
 			socket.emit("LAUNCHET_SERVER_FILE_OK", { serverId: serverAssetsManifest.id, childrenId: launcherSelectServerChildrenId });

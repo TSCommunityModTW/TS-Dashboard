@@ -38,7 +38,7 @@ export default function ServerCard(props: IProps) {
 					radius="lg"
 					size="sm"
 					onClick={() => {
-						router.push(`/dashboard/launcher/server/${server.id}`);
+						router.push(`/launcher/servers/${server.id}`);
 					}}
 				>
 					管理
